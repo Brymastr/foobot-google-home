@@ -1,0 +1,29 @@
+{
+  "name": "foobot-google-home",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brymastr/foobot-google-home.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Brymastr/foobot-google-home/issues"
+  },
+  "homepage": "https://github.com/Brymastr/foobot-google-home#readme",
+  "dependencies": {
+    "actions-on-google": "^1.2.0",
+    "amqplib": "^0.5.1",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.2.1",
+    "ngrok": "^2.2.15",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4"
+  }
+}
