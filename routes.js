@@ -7,9 +7,12 @@ const
 
 
 router.all('/', async ctx => {
-  const app = new ActionsSdkApp({request: ctx.request, response: ctx.response});
+  const actions = new ActionsSdkApp({request: ctx.request, response: ctx.response});
+  console.log(actions.getRawInput());
+  ctx.status = 200;
+  actions.tell('Hello, Father.');
 
-  ctx.body = home.handleIncoming(app);
+  // ctx.body = home.handleIncoming(app);
 });
 
 router.get('/url', async ctx => {

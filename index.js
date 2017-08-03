@@ -1,26 +1,26 @@
 const
-  Koa = require('koa'),
-  app = new Koa(),
-  bodyParser = require('koa-bodyparser'),
+  // Koa = require('koa'),
+  // app = new Koa(),
+  // bodyParser = require('koa-bodyparser'),
+  express = require('express'),
+  app = express(),
+  bodyParser = require('body-parser'),
+  ActionsSdkApp = require('actions-on-google').ActionsSdkApp,
   config = require('./config')(),
   amqp = require('amqplib'),
-  request = require('request-promise-native'),
-  { promisify } = require('util'),
-  ngrok = promisify(require('ngrok').connect);
+  request = require('request-promise-native');
 
-app.use(bodyParser({enableTypes: ['json']}));
-app.use(require('./routes'));
+app.use(bodyParser.json({type: 'application/json'}));
+app.use('/', function(request, response, next) {
+  const actions = new ActionsSdkApp({request, response});
+  console.log(actions.getRawInput());
+  actions.tell('Hello Father.');
+})
+// app.use(bodyParser({enableTypes: ['json']}));
+// app.use(require('./routes'));
 main();
 
 async function main() {
-  try {
-    if(process.env.FOOBOT_GOOGLE_HOME_URL === undefined || process.env.FOOBOT_GOOGLE_HOME_URL === null) {
-      process.env.FOOBOT_GOOGLE_HOME_URL = await ngrok({ addr: config.PORT, authtoken: config.NGROK_TOKEN });
-      console.log(process.env.FOOBOT_GOOGLE_HOME_URL);
-    }
-  } catch(err) {
-    console.log(err);
-  }
   app.listen(config.PORT);
   console.log('google home service ready');
 }
