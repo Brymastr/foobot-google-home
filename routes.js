@@ -1,10 +1,15 @@
 const
   Router = require('koa-router'),
   router = new Router(),
-  config = require('./config')();
+  config = require('./config')(),
+  home = require('./home'),
+  ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
 
-router.get('/', async ctx => {
-  ctx.body = `Hey it's me!`;
+
+router.all('/', async ctx => {
+  const app = new ActionsSdkApp({request: ctx.request, response: ctx.response});
+
+  ctx.body = home.handleIncoming(app);
 });
 
 router.get('/url', async ctx => {

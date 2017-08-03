@@ -15,8 +15,8 @@ main();
 async function main() {
   try {
     if(process.env.FOOBOT_GOOGLE_HOME_URL === undefined || process.env.FOOBOT_GOOGLE_HOME_URL === null) {
-      // process.env.FOOBOT_TELEGRAM_URL = await ngrok({ addr: config.PORT, authtoken: config.NGROK_TOKEN });
-      process.env.FOOBOT_GOOGLE_HOME_URL = await ngrok({ addr: config.PORT });
+      process.env.FOOBOT_GOOGLE_HOME_URL = await ngrok({ addr: config.PORT, authtoken: config.NGROK_TOKEN });
+      console.log(process.env.FOOBOT_GOOGLE_HOME_URL);
     }
   } catch(err) {
     console.log(err);
@@ -24,9 +24,3 @@ async function main() {
   app.listen(config.PORT);
   console.log('google home service ready');
 }
-
-// const actionsSdk = require('actions-on-google').ActionsSdkApp;
-
-// const app = new ActionsSdkApp({
-  
-// })

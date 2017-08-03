@@ -1,25 +1,19 @@
 {
   "actions": [
     {
-      "description": "Hello Intent",
       "name": "MAIN",
       "fulfillment": {
         "conversationName": "hello"
       },
       "intent": {
-        "name": "actions.intent.MAIN",
-        "trigger": {
-          "queryPatterns": [
-            "talk to foobot"
-          ]
-        }
+        "name": "actions.intent.MAIN"
       }
     }
   ],
   "conversations": {
     "hello": {
       "name": "hello",
-      "url": "https://google.foobot.dorsaydevelopment.ca"
+      "url": "https://a99d02d3.ngrok.io"
     }
   }
 }
